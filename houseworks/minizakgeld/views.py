@@ -34,11 +34,24 @@ def minizakgeld_details (request):
     return render(request,"minizakgeld_details.html", context)
 
 
+def child (request):
+    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date')
+    toplam_amount = toplam("feridihsan")
+    context = {
+        "Zakgelds": Zakgelds,
+        "toplam":toplam_amount
+    }
+    
+    return render(request, "child_1.html",context )
+
+
+
 def child_1(request):
     Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date')
-    
+    toplam_amount = toplam("feridihsan")
     context = {
-        "Zakgelds": Zakgelds
+        "Zakgelds": Zakgelds,
+        "toplam":toplam_amount
     }
     
     return render(request, "child_1.html",context )
@@ -46,10 +59,10 @@ def child_1(request):
 
 def child_2(request):
     Zakgelds=Zakgeld.objects.filter(person="ahmedvedat").order_by('amount')
-    
+    toplam_amount = toplam("ahmedvedat")
     context = {
-        "Zakgelds": Zakgelds
-    }
+        "Zakgelds": Zakgelds,
+        "toplam":toplam_amount    }
     
     return render(request, "child_2.html",context )
 
@@ -57,9 +70,14 @@ def child_2(request):
 def child_3 (request):
     Zakgelds=Zakgeld.objects.filter(person="alisami").order_by('-amount')
     
+    toplam_amount = toplam("alisami")
+
     context = {
-        "Zakgelds": Zakgelds
+        "Zakgelds": Zakgelds,
+        "toplam":toplam_amount
     }
+
+    
     
     return render(request, "child_3.html",context )
 
@@ -67,11 +85,14 @@ def child_3 (request):
 
 
 
-def toplam (request):
-    toplam=Zakgeld.objects.all()
+def toplam (name):
     
-    context = { "toplam": toplam }
+    all_objects_child = Zakgeld.objects.filter(person=name)
+    toplam = 0
 
-    return render(request, "toplam.html", context)    
+    for i in range(len(all_objects_child)):
+        toplam += all_objects_child[i].amount
+
+    return toplam   
 
 
