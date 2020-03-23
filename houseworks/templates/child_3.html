@@ -1,0 +1,27 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<center><h1>(:- Welkom Mini Zakgeld Voor Persoon-1 -:)<br>       
+<h2><a href="/">Home</a>-<a href="/minizakgeld_add">Harçlık Ekle</a>-<a href="/minizakgeld_details">Genel Tablo</a></h2>
+<table border="1" style="border-color: brown; font-size: 23px;">
+
+<tr><th>Sıra</th><th>İsim</th><th>Tarih</th><th>Açıklama</th><th>Miktar</th></tr>
+
+{% for zakgeld in Zakgelds %}
+   
+<tr><th>{{zakgeld.id}}</th>  
+<th>{{zakgeld.person}} </th>
+<th>{{zakgeld.date_created}}</th>
+<th>{{zakgeld.task}}</th>
+<th>{{zakgeld.amount}}</th></tr>
+{% endfor %}
+{% endblock %}
+
+</table>
+</center> 
+
+</body>
+</html>
+

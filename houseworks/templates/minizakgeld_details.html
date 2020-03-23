@@ -1,17 +1,26 @@
+<center>
 <h2><a href="/">Home</a>-<a href="/minizakgeld_add">Add New</a></h2><br>
-<table border="1" style="border-color: brown; font-size: 23px;">
 
-<tr><th>Sıra</th><th>İsim</th><th>Tarih</th><th>Açıklama</th><th>Miktar</th></tr>
+
 
 {% block content %}
-    {% for zakgeld in Zakgelds %}
-    
-<tr><th>{{zakgeld.id}}</th>  
-<th>{{zakgeld.person}} </th>
-<th>{{zakgeld.date_created}}</th>
-<th>{{zakgeld.task}}</th>
-<th>{{zakgeld.amount}}</th></tr>
+<th><h2>N.tasks done: {{ da|length }}  </h2></th>
+<table border="1" style="border-color: brown; font-size: 23px;">
+<tr><th>Sıra</th><th>İsim</th><th>Açıklama</th><th>Miktar</th><th>Tarih</th></tr>
+
+{% for zakgeld in da %}   
+
+<tr>
+    <ol><th><li><th>{{zakgeld.person}} </th><th>{{zakgeld.task}}</th><th>{{zakgeld.amount}}</th><th>{{zakgeld.date_created}}</th>
+</li>
+</ol>
+</tr>   
+
 
     {% endfor %}
 
+</table>
+    
 {% endblock%}
+
+</center>

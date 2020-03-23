@@ -1,0 +1,29 @@
+ {% block content %}
+<center><h1>(:- Welkom Mini Zakgeld Voor Persoon-1 -:)<br>       
+<h2><a href="/">Home</a>-<a href="/minizakgeld_add">Harçlık Ekle</a>-<a href="/minizakgeld_details">Genel Tablo</a></h2>
+
+
+<th><h2>N.tasks done: {{ Zakgelds|length }}</h2></th>
+
+<table border="1" style="border-color: brown; font-size: 23px;">
+
+<ol>
+{% for a in toplam %}  
+  
+  <li>
+            <th>{{ a.amount }}
+        </li>
+{% endfor %}
+</ol>
+</table>
+{% endblock %}
+
+
+
+
+
+</center> 
+
+</body>
+</html>
+
