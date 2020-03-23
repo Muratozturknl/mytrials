@@ -67,17 +67,11 @@ def child_3 (request):
 
 
 
-
-
-
-
-
-
 def toplam (request):
     toplam=Zakgeld.objects.all()
     
     context = { "toplam": toplam }
-    print(toplam)
-    
+
+    return render(request, "toplam.html", context)    
 
 

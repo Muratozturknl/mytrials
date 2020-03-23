@@ -4,23 +4,27 @@
 
 
 <th><h2>N.tasks done: {{ Zakgelds|length }}</h2></th>
-
+<ol>
 <table border="1" style="border-color: brown; font-size: 23px;">
 
-<ol>
-{% for a in toplam %}  
-  
-  <li>
-            <th>{{ a.amount }}
-        </li>
+ {% for a in toplam %}  
+
+
+
+ <tr><th><li>
+
+    {{ a.amount }}
+</li></th></tr>
+
+
+
+
+
+
 {% endfor %}
-</ol>
 </table>
+</ol>
 {% endblock %}
-
-
-
-
 
 </center> 
 
