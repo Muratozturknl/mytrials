@@ -13,11 +13,11 @@ def index(request):
 
 def minizakgeld_add (request):
     if request.method == "POST":
-        person = request.POST['person']
+        child = request.POST['child']
         task = request.POST['task']
         amount = request.POST['amount']
 
-        minizakgeld=Zakgeld(person=person, task=task, amount=amount)
+        minizakgeld=Zakgeld(child=child, task=task, amount=amount)
         minizakgeld.save()
 
         return redirect('/')
@@ -25,7 +25,7 @@ def minizakgeld_add (request):
     return render(request, "minizakgeld_add.html")
 
 
-
+#şkşldşadjaşdjaşdk
 
 
 def minizakgeld_details (request):
@@ -38,8 +38,8 @@ def minizakgeld_details (request):
 
 
 
-def child (request):
-    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date_created')
+def child_0 (request):
+    Zakgelds=Zakgeld.objects.filter(child="feridihsan").order_by('-date_created')
     toplam_amount = toplam("feridihsan")
     context = {
         "Zakgelds": Zakgelds,
@@ -51,7 +51,7 @@ def child (request):
 
 
 def child_1(request):
-    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date_created')
+    Zakgelds=Zakgeld.objects.filter(child="feridihsan").order_by('-date_created')
     toplam_amount = toplam("feridihsan")
     context = {
         "Zakgelds": Zakgelds,
@@ -62,7 +62,7 @@ def child_1(request):
 
 
 def child_2(request):
-    Zakgelds=Zakgeld.objects.filter(person="ahmedvedat").order_by('amount')
+    Zakgelds=Zakgeld.objects.filter(child="ahmedvedat").order_by('amount')
     toplam_amount = toplam("ahmedvedat")
     context = {
         "Zakgelds": Zakgelds,
@@ -72,7 +72,7 @@ def child_2(request):
 
 
 def child_3 (request):
-    Zakgelds=Zakgeld.objects.filter(person="alisami").order_by('-amount')
+    Zakgelds=Zakgeld.objects.filter(child="alisami").order_by('-amount')
     
     toplam_amount = toplam("alisami")
 
@@ -91,7 +91,7 @@ def child_3 (request):
 
 def toplam (name):
     
-    all_objects_child = Zakgeld.objects.filter(person=name)
+    all_objects_child = Zakgeld.objects.filter(child=name)
     toplam = 0
 
     for i in range(len(all_objects_child)):

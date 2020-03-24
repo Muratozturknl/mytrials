@@ -4,8 +4,8 @@ from .models import Zakgeld
 
 
 class ZakgeldAdmin(admin.ModelAdmin):
-   list_display = ('id','person', 'task',"amount",'date_created')
-   list_display_links = ('id','person', 'task',"amount",'date_created')
+   list_display = ('id','child', 'task',"amount",'date_created')
+   list_display_links = ('id','child', 'task',"amount",'date_created')
   
 
 
