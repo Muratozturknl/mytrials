@@ -30,14 +30,16 @@ def minizakgeld_add (request):
 
 def minizakgeld_details (request):
     da=Zakgeld.objects.all().order_by("id")
-    
+    toplam_amount= toplam("da")
     context = {
-        "da": da    }
+        "da": da    , "toplam": toplam_amount}
     return render(request,"minizakgeld_details.html", context)
 
 
+
+
 def child (request):
-    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date')
+    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date_created')
     toplam_amount = toplam("feridihsan")
     context = {
         "Zakgelds": Zakgelds,
