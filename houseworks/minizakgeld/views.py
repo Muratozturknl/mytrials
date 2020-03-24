@@ -26,6 +26,8 @@ def minizakgeld_add (request):
 
 
 
+
+
 def minizakgeld_details (request):
     da=Zakgeld.objects.all().order_by("id")
     
@@ -47,7 +49,7 @@ def child (request):
 
 
 def child_1(request):
-    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date')
+    Zakgelds=Zakgeld.objects.filter(person="feridihsan").order_by('-date_created')
     toplam_amount = toplam("feridihsan")
     context = {
         "Zakgelds": Zakgelds,
@@ -94,5 +96,3 @@ def toplam (name):
         toplam += all_objects_child[i].amount
 
     return toplam   
-
-

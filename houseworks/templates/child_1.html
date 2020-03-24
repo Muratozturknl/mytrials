@@ -1,25 +1,25 @@
- {% block content %}
+{% block content %}
 <center><h1>(:- Welkom Mini Zakgeld Voor Persoon-1 -:)<br>       
 <h2><a href="/">Home</a>-<a href="/minizakgeld_add">Harçlık Ekle</a>-<a href="/minizakgeld_details">Genel Tablo</a></h2>
-
-
-<th><h2>N.tasks done: {{ Zakgelds|length }}</h2></th>
-
 <table border="1" style="border-color: brown; font-size: 23px;">
-<tr><th>No</th><th>Child</th><th>Date</th><th>Task</th><th>Amount</th></tr>
+<h2> Total Earned {{ toplam }} </h2></tr> 
+<tr><th>No</th><th>Sıra</th><th>İsim</th><th>Tarih</th><th>Açıklama</th><th>Miktar</th></tr>
 
-    {% for zakgeld in Zakgelds %}  
-<tr><th>{{zakgeld.id}}</th>  
+{% for zakgeld in Zakgelds %}
+    <ol>
+<tr><th><li><th>{{zakgeld.id}}</th>  
 <th>{{zakgeld.person}} </th>
 <th>{{zakgeld.date_created}}</th>
 <th>{{zakgeld.task}}</th>
-<th>{{zakgeld.amount}}</th></tr>
-    
-{% endfor %}
+<th>{{zakgeld.amount}}</th></li></tr>
 
+</ol>
+
+{% endfor %}
 </table>
 
-
+<th>
+</th>
 {% endblock %}
 
 

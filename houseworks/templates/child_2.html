@@ -2,7 +2,7 @@
 <center><h1>(:- Welkom Mini Zakgeld Voor Persoon-1 -:)<br>       
 <h2><a href="/">Home</a>-<a href="/minizakgeld_add">Harçlık Ekle</a>-<a href="/minizakgeld_details">Genel Tablo</a></h2>
 <table border="1" style="border-color: brown; font-size: 23px;">
-    <h1>Total Earned: {{ toplam }}</h1>
+<h2> Total Earned {{ toplam }} </h2></tr> 
 <tr><th>Sıra</th><th>İsim</th><th>Tarih</th><th>Açıklama</th><th>Miktar</th></tr>
 
 {% for zakgeld in Zakgelds %}
@@ -14,6 +14,7 @@
 <th>{{zakgeld.amount}}</th></tr>
 {% endfor %}
 </table>
+
 <th>
 </th>
 {% endblock %}
