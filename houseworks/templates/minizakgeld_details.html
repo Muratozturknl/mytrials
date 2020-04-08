@@ -4,8 +4,24 @@
 
 
 {% block content %}
-<th><h2>N.tasks done: {{ da|length }}  
-    {{ toplam }}
+<!-- <th><h2>N.tasks done: {{ da|length }}  -->
+    {{ topla }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </h2></th>
 <table border="1" style="border-color: brown; font-size: 23px;">
 <tr><th>Sıra</th><th>İsim</th><th>Açıklama</th><th>Miktar</th><th>Tarih</th></tr>
@@ -13,9 +29,11 @@
 {% for zakgeld in da %}   
 
 <tr>
-    <ol><th><li><th>{{zakgeld.child}} </th><th>{{zakgeld.task}}</th><th>{{zakgeld.amount}}</th><th>{{zakgeld.date_created}}</th>
-</li>
-</ol>
+    <th>{{zakgeld.id}} </th>
+    <th>{{zakgeld.child}} </th>
+    <th>{{zakgeld.task}}</th>
+    <th>{{zakgeld.amount}}</th>
+    <th>{{zakgeld.date_created}}</th>
 </tr>   
 
 
