@@ -1,10 +1,59 @@
 {% extends 'layout.html' %}
 
 
+
 {% block content  %}
+{% load crispy_forms_tags %}
+{{ toplam }}--
+<p>
+    You logged for,  {{request.user.username}}
+    <a class = "btn btn-danger" href = "/zak/addzak">Add Zak </a></p>
 
-Hello
 
-{% endblock  %}
+
+
+{% if zaks %}
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Task</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for zak in zaks %}
+          <tr>
+            <th scope="row">{{zak.id}}</th>
+            <td>{{zak.child.username}}</td>
+            <td>{{zak.task}}</td>
+            <td>{{zak.amount}}</td>
+            <td>{{zak.date}}</td>
+            <td><a href="/zak/update/{{zak.id}}" class = "btn btn-info">⬆</a></td>
+            <td><a href="/zak/delete/{{zak.id}}" class = "btn btn-link">❌</a> </td>
+              
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+{% else %}
+
+<div class = "alert alert-danger">
+    Henüz bir makaleniz bulunmuyor...
+
+</div>
+{% endif %}
+
+
+
+{% endblock content %}
+
+
+
 
 

@@ -1,5 +1,11 @@
-<nav class="navbar shadow navbar-expand-lg navbar-light sticky-top">
-    
+<nav class="navbar navbar-expand-sm bg-dark  justify-content-center navbar-dark">
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>  
+  
+  
+  
+  <ul class="navbar-nav">
     <a href="{% url 'index' %}" class="navbar-brand">Home</a>
     <div class="container py-2"></div>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -16,21 +22,21 @@
             </li>
             
             <li class="nav-item active">
-            <a class="nav-link" href="{% url 'user:logout' %}">Çıkış Yap</a>
+            <a class="nav-link" href="{% url 'user:logout' %}">LogOut</a>
             </li>
             <li class="nav-item active">
-            <a class="nav-link" href="{% url 'dashboard' %}">Panel</a>
+            <a class="nav-link" href="{% url 'zak:dashboard' %}">Panel</a>
             </li>
             
             
             {% else %}
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'user:login' %}">Giriş Yap</a>
+                <a class="nav-link" href="{% url 'user:login' %}">LogIn</a>
               </li>
-              {% endif %}
+            {% endif %}
 
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'user:register' %}">Kayıt Ol</a>
+                <a class="nav-link" href="{% url 'user:register' %}">Register</a>
               </li>
         </div>
     </div>

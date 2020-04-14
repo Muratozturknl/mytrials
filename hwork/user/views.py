@@ -15,7 +15,7 @@ def register (request):
             newUser.set_password(password)
             newUser.save()
             login(request, newUser)
-            messages.success(request,"BaşarıylaSaved.....")
+            messages.success(request,"Saved...!")
 
             return redirect ("index")
         
@@ -46,7 +46,7 @@ def loginUser(request):
             # bir değişkene atama yaptık ve bu veriler databasede kayıtlımı diye sorgulanıyor.
 
         if user is None:
-            messages.info(request, 'Invalid user name or password')
+            messages.info(request, 'Invalid User Name / Password')
             return render(request, 'login.html', context)
                 # giriş başarısız, tekrar login sayfasına döndürdü
      
@@ -66,6 +66,6 @@ def loginUser(request):
 
 def logoutUser (request):
     logout(request)
-    messages.success (request,"Başarıyla çıkış yaptınız!")
+    messages.success (request,"Logged Out...!")
     
     return redirect("index")

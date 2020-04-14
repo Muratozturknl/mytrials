@@ -5,7 +5,7 @@ from .models import Zak
 @admin.register(Zak)
 class ZakAdmin(admin.ModelAdmin):
   
-   list_display = ('id','child', 'title',"amount",'date')
+   list_display = ('id','child', 'task',"amount",'date')
    
   
    class Meta:

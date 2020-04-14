@@ -7,6 +7,10 @@ app_name="zak"
 
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    path('/dashboard/',views.dashboard, name = "dashboard"),
+    path('dashboard/',views.dashboard, name = "dashboard"),
+    path('addzak/', views.addzak, name="addzak"),
+    path('update/<int:id>',views.update,name = "update"),
+    path('delete/<int:id>',views.delete,name = "delete"),
+    #path('zaks/',views.zaks,name = "zaks"),
+   
 ]

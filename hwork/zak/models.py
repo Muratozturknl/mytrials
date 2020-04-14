@@ -7,22 +7,18 @@ from django.db import models
 class Zak(models.Model):
     child = models.ForeignKey('auth.User', on_delete = models.CASCADE)
     # auto.User --> Allows us to retrieve user names from the specified table
-    # on_delete -->  Deletes all data when the author name is deleted
-
-    title = models.CharField(max_length = 50,)
+   # on_delete -->  Deletes all data when the author name is deleted
+    task = models.CharField(max_length = 50,)
     # The title and the total number of characters were created in the table.
     # The name was then customized to 'verbose name = başlık'.
-
     amount = models.FloatField()
-
-
     date = models.DateTimeField( auto_now_add = True)
     # The data column were created auto as Instant Current Time
     # The name was then customized to 'verbose name = oluşturulma zamanı'.
    
 
     def __str__(self):
-        return self.title
+        return self.task
     # We have customized the name of an object added here. 
     # The object name as Article object (1) will appear as title (başlık).
     

@@ -10,6 +10,22 @@
 </head>
 <body>
    {% include "includes/navbar.html"  %}
+ <div style = "margin-top : 40px; margin-bottom:10px;" class = "container">
+
+    {% if messages %}
+                
+        {% for message in messages %}
+        {% if message.tags == "info" %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {% else %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+
+        {% endif %}
+
+
+        {% endfor %}
+                
+    {% endif %}
     {% block content %}
    
     
