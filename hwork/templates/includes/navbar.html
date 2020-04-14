@@ -1,12 +1,10 @@
-<nav class="navbar navbar-expand-sm bg-dark  justify-content-center navbar-dark">
-<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>  
-  
-  
+<nav class="navbar navbar-expand-sm bg-dark  justify-content-center navbar-dark"> 
   
   <ul class="navbar-nav">
     <a href="{% url 'index' %}" class="navbar-brand">Home</a>
+    <ul class="navbar-nav">
+                <a class="nav-link" href="{% url 'zak:zaks' %}">Zaks</a>
+              
     <div class="container py-2"></div>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false"
@@ -38,6 +36,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'user:register' %}">Register</a>
               </li>
+              
         </div>
     </div>
 </nav>

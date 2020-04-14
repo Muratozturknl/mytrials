@@ -59,12 +59,10 @@ def delete(request,id):
     return redirect("zak:dashboard")
 
 
-"""
-def zaks(request):
-    keyword = request.GET.get("keyword")
 
-    if keyword:
-        zaks = Zak.objects.filter(task__contains = keyword)
-        return render(request,"zaks.html",{"zaks":zaks})
+def zaks(request):
     zaks = Zak.objects.all()
-    return render(request,"zaks.html",{"zaks":zaks})"""
+
+
+    
+    return render(request,"zaks.html",{"zaks":zaks})
