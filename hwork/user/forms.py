@@ -1,7 +1,7 @@
 from django import forms
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label ="Kullanıcı Adı")
+    username = forms.CharField(label ="Name")
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 
@@ -10,9 +10,9 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
 
-    username = forms.CharField(max_length=50, label="KullanıcıAdı")
-    password = forms.CharField(max_length=20, label="Paralo",widget= forms.PasswordInput)
-    confirm = forms.CharField(max_length=20, label="ParaloyuDoğrula",widget= forms.PasswordInput)
+    username = forms.CharField(max_length=50, label="Name")
+    password = forms.CharField(max_length=20, label="Password",widget= forms.PasswordInput)
+    confirm = forms.CharField(max_length=20, label="Confirm Password",widget= forms.PasswordInput)
     
     def clean (self):
         username= self.cleaned_data.get("username")
@@ -20,7 +20,7 @@ class RegisterForm(forms.Form):
         confirm= self.cleaned_data.get("confirm")
 
         if password and confirm and password != confirm:
-            raise forms.ValidationError("ParolalarEşleşmiyor")
+            raise forms.ValidationError("Password Match problem")
         
         values= {
             "username": username,

@@ -1,11 +1,10 @@
-<nav class="navbar navbar-expand-sm bg-dark  justify-content-center navbar-dark"> 
-  
+<nav class="navbar fixed-top navbar-light bg-light">  
   <ul class="navbar-nav">
     <a href="{% url 'index' %}" class="navbar-brand">Home</a>
     <ul class="navbar-nav">
                 <a class="nav-link" href="{% url 'zak:zaks' %}">Zaks</a>
               
-    <div class="container py-4"></div>
+    <div class="container py-2"></div>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -22,7 +21,7 @@
                 <a class="nav-link" href="{% url 'user:logout' %}">LogOut</a>
               </li>            
             <li class="nav-item active">
-            <a class="nav-link" href="{% url 'user:switch' %}">Switcht Child</a>
+            <a class="nav-link" href="{% url 'user:switch' %}">Switch Child</a>
             </li>
             <li class="nav-item active">
             <a class="nav-link" href="{% url 'zak:dashboard' %}">Panel</a>
@@ -42,7 +41,7 @@
             {% endif %}
 
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'user:register' %}">Register</a>
+                <a class="nav-link" href="{% url 'user:register' %}">Register New Child</a>
               </li>
               
         </div>

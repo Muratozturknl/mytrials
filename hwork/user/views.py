@@ -67,14 +67,15 @@ def loginUser(request):
     return render(request, 'login.html', context)
         # 54. stır ile aynı durum. bu bölümde if sorgusu b
 
-
-
-
-
-
-
-
 def logoutUser (request):
+    logout(request)
+    messages.success (request,"Logged Out...!")
+    
+    return redirect("index")
+
+
+
+def switch (request):
     logout(request)
     messages.success (request,"Logged Out...!")
     
