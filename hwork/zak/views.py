@@ -22,12 +22,12 @@ def addzak (request):
         zak.save()
 
         messages.success(request,"Saved!!")
-        return redirect("index")
+        return redirect("/zak/zakgeld")
     return render(request,"addzak.html", {"form":form})
 
 @login_required(login_url = "user:login")
 def dashboard(request):
-    zaks = Zak.objects.filter(child = request.user)
+    zaks = Zak.objects.filter(child = request.user).order_by("-date")
     context = {
         "zaks":zaks,
      
@@ -59,10 +59,21 @@ def delete(request,id):
     return redirect("zak:dashboard")
 
 
+def zakgeld(request):
+    zaks = Zak.objects.filter(child = request.user)
+    context = {
+        "zaks":zaks,
+        }
+    return render(request,"zakgeld.html",context)   
+    
 
 def zaks(request):
-    zaks = Zak.objects.all()
+    keyword = request.GET.get("keyword")
 
-
+    if keyword:
+        zaks = Zak.objects.filter(task__contains = keyword)
+        return render(request,"zaks.html",{"zaks":zaks})
+       
+    zaks = Zak.objects.all().order_by("-id")
     
     return render(request,"zaks.html",{"zaks":zaks})

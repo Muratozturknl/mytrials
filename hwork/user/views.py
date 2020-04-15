@@ -31,6 +31,11 @@ def register (request):
         }
         return render(request,"register.html", context)
 
+
+
+
+
+
 def loginUser(request):
     form = LoginForm(request.POST or None)
     context = {
@@ -56,7 +61,7 @@ def loginUser(request):
         login(request, user)
             # user değişkenine atanan veriler ile login fonk. sayesinde giriş yapıldı
 
-        return redirect('index')
+        return redirect('/zak/zakgeld')
             # giriş başarılı ana sayfaya yönlendiriliyor
 
     return render(request, 'login.html', context)
@@ -64,8 +69,13 @@ def loginUser(request):
 
 
 
+
+
+
+
+
 def logoutUser (request):
     logout(request)
     messages.success (request,"Logged Out...!")
     
-    return redirect("index")
+    return redirect("/user/login")
