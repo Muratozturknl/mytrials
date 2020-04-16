@@ -73,11 +73,27 @@ def zaks(request):
         zaks = Zak.objects.filter(task__contains = keyword)
         return render(request,"zaks.html",{"zaks":zaks})
        
-    zaks = Zak.objects.all().order_by("-id")
-    toplam=Zak.objects.aggregate(Sum('amount'))
+    zaks = Zak.objects.all().order_by("task")
+    sum_geld=Zak.objects.aggregate(top=Sum('amount'))
+    pay_geld=Zak.objects.filter(task="payment").aggregate(paid=Sum('amount'))
     
-   
-    return render(request,"zaks.html",{"zaks":zaks, "toplam":toplam[0]})
+    remain_geld= "a"
+    return render(request,"zaks.html",
+    {"zaks":zaks, "sum_geld":sum_geld, "pay_geld":pay_geld,"remain_geld":remain_geld})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @login_required(login_url = "user:login")

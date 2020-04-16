@@ -8,4 +8,4 @@ class ZakForm(forms.ModelForm):
 class PayForm(forms.ModelForm):
     class Meta:
         model = Zak
-        fields = ["amount"]
+        fields = ["task","amount"]
