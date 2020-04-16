@@ -4,7 +4,8 @@ from .forms import ZakForm, PayForm
 from .models import Zak
 from django.contrib.auth.decorators import login_required
 from django.http import request
-from django.db.models import Sum, Avg
+from django.db.models import Sum, Avg, Q
+from collections import Counter
 
 
 # Create your views here.
@@ -61,10 +62,18 @@ def delete(request,id):
 
 def zakgeld(request):
     zaks = Zak.objects.filter(child = request.user)
-    toplam=Zak.objects.filter(child = request.user).aggregate(Sum('amount'))
-    
-    return render(request,"zakgeld.html",{"zaks":zaks,"toplam":toplam})   
+    a=Zak.objects.filter(~Q(task= "payment")).aggregate(Earned=Sum('amount'))
+    sum_geld = int(a["Earned"])
 
+    b=Zak.objects.filter(task= "payment").aggregate(Paid=Sum('amount'))
+    pay_geld = int(b["Paid"])
+    
+    remain_geld=sum_geld-pay_geld
+       
+    return render(request,"zaks.html",
+    {"zaks":zaks, "sum_geld":sum_geld, "pay_geld":pay_geld,"remain_geld":remain_geld})
+
+    
 
 def zaks(request):
     keyword = request.GET.get("keyword")
@@ -74,31 +83,24 @@ def zaks(request):
         return render(request,"zaks.html",{"zaks":zaks})
        
     zaks = Zak.objects.all().order_by("task")
-    sum_geld=Zak.objects.aggregate(top=Sum('amount'))
-    pay_geld=Zak.objects.filter(task="payment").aggregate(paid=Sum('amount'))
+    a=Zak.objects.filter(~Q(task= "payment")).aggregate(Earned=Sum('amount'))
+    sum_geld = int(a["Earned"])
+
+    b=Zak.objects.filter(task= "payment").aggregate(Paid=Sum('amount'))
+    pay_geld = int(b["Paid"])
     
-    remain_geld= "a"
+    remain_geld=sum_geld-pay_geld
+       
     return render(request,"zaks.html",
     {"zaks":zaks, "sum_geld":sum_geld, "pay_geld":pay_geld,"remain_geld":remain_geld})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @login_required(login_url = "user:login")
 def payment (request):
-    form = PayForm(request.POST or None)
+    initial_data= {
+        "task": "payment"
+    }
+    form = PayForm(request.POST or None, initial=initial_data)
     if form.is_valid():
         pay = form.save(commit=False)    
         pay.child = request.user
