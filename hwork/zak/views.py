@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django .contrib import messages
-from .forms import ZakForm
+from .forms import ZakForm, PayForm
 from .models import Zak
 from django.contrib.auth.decorators import login_required
 from django.http import request
-
+from django.db.models import Sum, Avg
 
 
 # Create your views here.
@@ -61,11 +61,10 @@ def delete(request,id):
 
 def zakgeld(request):
     zaks = Zak.objects.filter(child = request.user)
-    context = {
-        "zaks":zaks,
-        }
-    return render(request,"zakgeld.html",context)   
+    toplam=Zak.objects.filter(child = request.user).aggregate(Sum('amount'))
     
+    return render(request,"zakgeld.html",{"zaks":zaks,"toplam":toplam})   
+
 
 def zaks(request):
     keyword = request.GET.get("keyword")
@@ -75,5 +74,23 @@ def zaks(request):
         return render(request,"zaks.html",{"zaks":zaks})
        
     zaks = Zak.objects.all().order_by("-id")
+    toplam=Zak.objects.aggregate(Sum('amount'))
     
-    return render(request,"zaks.html",{"zaks":zaks})
+   
+    return render(request,"zaks.html",{"zaks":zaks, "toplam":toplam[0]})
+
+
+@login_required(login_url = "user:login")
+def payment (request):
+    form = PayForm(request.POST or None)
+    if form.is_valid():
+        pay = form.save(commit=False)    
+        pay.child = request.user
+        pay.save()
+
+        messages.success(request,"Payment Done!!")
+        return redirect("/zak/zakgeld")
+    return render(request,"payment.html", {"form":form})
+
+
+
