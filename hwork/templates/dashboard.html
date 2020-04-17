@@ -4,10 +4,16 @@
 
 {% block content  %}
 {% load crispy_forms_tags %}
-{{ toplam }}--
+
 <p>
-   {{request.user.username}}'s Panel'
+  <center> {{request.user.username}}'s Panel'</center><hr>
    {% if zaks %}
+   <table>
+<tr>
+<th>Earned</th> <td>{{ sum_geld }}</td>
+<th>Used</th>   <td>{{ pay_geld }}</td>
+<th>Remains</th><td>{{ remain_geld}}  </td><tr>
+</table>
 <table class="table">
         <thead>
           <tr>

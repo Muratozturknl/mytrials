@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-sm bg-dark  justify-content-center navbar-dark"> 
   
-  <ul class="navbar-nav">
-    <a href="{% url 'index' %}" class="navbar-brand">Home</a>
-    <ul class="navbar-nav">
-                <a class="nav-link" href="{% url 'zak:zaks' %}">Zaks</a>
+  <li class="navbar-nav">
+    <a href="{% url 'index' %}" class="navbar-brand">Home</a></li>
+    <li class="navbar-nav">
+                <a class="navbar-brand" href="{% url 'zak:zaks' %}">Zaks</a></li>
               
     <div class="container py-4"></div>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -15,40 +15,45 @@
 
         <ul class="navbar-nav ml-auto">
             {% if request.user.is_authenticated %}
-            <li class="nav-item active">
-           
+            <li class="navbar-brand">
+            <a class="navbar-brand" href="{% url 'zak:zakgeld' %}">Zakgeld</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'user:logout' %}">LogOut</a>
+            
+            <li class="navbar-brand">
+            <a class="navbar-brand" href="{% url 'zak:addzak' %}">Add Zak</a>
+            </li>
+            
+            <li class="navbar-brand">
+            <a class="navbar-brand" href="{% url 'zak:payment' %}">Make Payment</a>
+            </li>
+
+            <li class="navbar-brand">
+            <a class="navbar-brand" href="{% url 'zak:dashboard' %}">Panel</a>
+            </li>
+            
+
+            <li class="navbar-brand">
+            <a class="navbar-brand" href="{% url 'user:logout' %}">LogOut</a>
               </li>            
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'user:switch' %}">Switcht Child</a>
+            
+            <li class="navbar-brand">
+            <a class="navbar-brand" href="{% url 'user:switch' %}">Switcht Child</a>
             </li>
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'zak:dashboard' %}">Panel</a>
-            </li>
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'zak:zakgeld' %}">Zakgeld</a>
-            </li>
-            <li class="nav-item active">
-            <a class="nav-link" href="{% url 'zak:addzak' %}">Add Zak</a>
-            </li>
-             <li class="nav-item active">
-            <a class="nav-link" href="{% url 'zak:payment' %}">Make Payment</a>
-            </li>
+            
+            
+            
             
             
             {% else %}
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'user:login' %}">LogIn</a>
+            <li class="navbar-brand">
+                <a class="navbar-brand" href="{% url 'user:login' %}">LogIn</a>
               </li>
             {% endif %}
 
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'user:register' %}">Register</a>
+              <li class="navbar-brand">
+                <a class="navbar-brand" href="{% url 'user:register' %}">Register</a>
               </li>
               
-        </div>
-    </div>
+        </ul>
 </nav>
 

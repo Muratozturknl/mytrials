@@ -1,80 +1,43 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 
+{% block content %}
 
+    <div class="col-md-10 offset-md-2">
 
-{% block content  %}
-{% load crispy_forms_tags %}
+{% if zaks %}
 
-<h3>
-    <center>{{request.user.username}}'s Zak </center>
-</h3>
-<style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {background-color:#f5f5f5;}
-</style>
-
-
-
-
-<p>
-<table class="table">
+<table>
 <tr>
 <th>Earned</th> <td>{{ sum_geld }}</td>
 <th>Used</th>   <td>{{ pay_geld }}</td>
 <th>Remains</th><td>{{ remain_geld}}  </td><tr>
 </table>
-</p>
+<hr>
+<table>
+<tr><th>Id</th><th>Child</th><th>Task</th><th>Amount</th><th>Date</th>
+{% for zak in zaks %}  
 
+<tr>
+<td>{{zak.id}}</td>
+<td>{{zak.child.username}}</td>
+<td>{{zak.task}}</td>
+<td>{{zak.amount}}</td>
+<td>{{zak.date}}</td></tr>
+{% endfor %}
+</table>
+</div>
 
-
-
-
-{% if zaks %}
-<table class="table">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Task</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for zak in zaks %}
-          <tr>
-            <th scope="row">{{zak.id}}</th>
-            <td>{{zak.task}}</td>
-            <td>{{zak.amount}}</td>
-            <td>{{zak.date}}</td>
-              
-          </tr>
-          {% endfor %}
-          
-        </tbody>
-      </table>
 {% else %}
-
+<div class ="row">
+    
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
 <div class = "alert alert-danger">
-    No geld in de zak yet!..
-
+   No Zakgeld!!
+</div>
+</div>
+</div>
 </div>
 {% endif %}
 
-
-
 {% endblock content %}
-
-
-
-
-
