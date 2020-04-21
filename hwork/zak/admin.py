@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import Zak
 # Rester your models here.
 
+
+
 @admin.register(Zak)
 class ZakAdmin(admin.ModelAdmin):
   

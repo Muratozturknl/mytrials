@@ -9,6 +9,7 @@ from collections import Counter
 
 
 def index (request):
+    
     return render(request,"index.html")
 
 
@@ -64,36 +65,19 @@ def delete(request,id):
 
     return redirect("zak:dashboard")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+""" ............................................................................................................
+.............................................................................................."""
 
 
 @login_required(login_url = "user:login")
 def dashboard(request):
-    zaks = Zak.objects.filter(child = request.user).order_by("-date")
-    a=Zak.objects.filter(~Q(task= "*payment*")).aggregate(Earned=Sum('amount'))
-    sum_geld = int(a["Earned"])
+    a=zaks.filter(~Q(task= "*payment*"))
+    b=a.aggregate(Earned=Sum('amount'))
+    sum_geld = int(b["Earned"])
 
-    b=Zak.objects.filter(task= "*payment*").aggregate(Paid=Sum('amount'))
-    pay_geld = int(b["Paid"])
+    c=zaks.filter(task= "*payment*")
+    d=c.aggregate(Paid=Sum('amount'))
+    pay_geld = int(d["Paid"])
     
     remain_geld=sum_geld-pay_geld
     context={
@@ -106,6 +90,7 @@ def dashboard(request):
     }
     return render(request,"dashboard.html",context)   
 
+
 def zaks(request):
     keyword = request.GET.get("keyword")
 
@@ -116,12 +101,14 @@ def zaks(request):
         return render(request,"zaks.html", context)
        
     zaks = Zak.objects.all().order_by("task")
-    a=Zak.objects.filter(~Q(task= "*payment*")).aggregate(Earned=Sum('amount'))
-    sum_geld = int(a["Earned"])
+    a=zaks.filter(~Q(task= "*payment*"))
+    b=a.aggregate(Earned=Sum('amount'))
+    sum_geld = int(b["Earned"])
 
-    b=Zak.objects.filter(task= "*payment*").aggregate(Paid=Sum('amount'))
-    pay_geld = int(b["Paid"])
-    
+    c=zaks.filter(task= "*payment*")
+    d=c.aggregate(Paid=Sum('amount'))
+    pay_geld = int(d["Paid"])
+
     remain_geld=sum_geld-pay_geld
     context={
 
@@ -135,29 +122,19 @@ def zaks(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 def zakgeld(request):
     zaks = Zak.objects.filter(child = request.user)  
 
-    a=Zak.objects.filter(~Q(task= "*payment*")).aggregate(Earned=Sum('amount'))
-    sum_geld = int(a["Earned"])
+    a=zaks.filter(~Q(task= "*payment*"))
+    b=a.aggregate(Earned=Sum('amount'))
+    sum_geld = int(b["Earned"])
 
-    b=Zak.objects.filter(task= "*payment*").aggregate(Paid=Sum('amount'))
-    pay_geld = int(b["Paid"])
+    c=zaks.filter(task= "*payment*")
+    d=c.aggregate(Paid=Sum('amount'))
+    pay_geld = int(d["Paid"])
     
     remain_geld=sum_geld-pay_geld
+    
     context={
 
         "zaks":zaks, 
@@ -168,4 +145,3 @@ def zakgeld(request):
     }
 
     return render(request,"zakgeld.html",context)
-

@@ -1,11 +1,11 @@
-
 from django.db import models
 #from ckeditor.fields import RichTextField
 
 # we are creating model for admin panel
 
+
 class Zak(models.Model):
-    child = models.ForeignKey('auth.User', on_delete = models.CASCADE)
+    child = models.ForeignKey("auth.User", default=True, on_delete = models.CASCADE)
     # auto.User --> Allows us to retrieve user names from the specified table
    # on_delete -->  Deletes all data when the author name is deleted
     task = models.CharField(max_length = 50,)

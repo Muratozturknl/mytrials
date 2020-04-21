@@ -24,6 +24,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('zak/', include("zak.urls")),
     path('user/', include("user.urls")),
-    
+        
 
 ]
